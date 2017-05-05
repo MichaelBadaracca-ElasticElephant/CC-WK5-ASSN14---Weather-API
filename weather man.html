@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Weather Man Bill</title>
+	<script
+		src="https://code.jquery.com/jquery-3.1.1.js"
+		integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+		crossorigin="anonymous"
+	></script>
+
+
+
+	<!-- 
+	WEATHER ASSIGNMENT:
+	-
+	Your goal: Build a simple weather website using data from an api. 
+	-
+	Using jquery, build out the html and content of your page to display the weather data from at least one location (there are ten in the API) but feel free to go wild and do the rest. 
+	-
+	here is the link to the api: 
+	http://api.geonames.org/weatherJSON?north=41&south=39&east=-104&west=-106&username=ertyseidohl
+	-
+	The beginnings of this code are located below:
+	-
+	 -->
+
+
+
+
+</head>
+<body>
+
+    <div id="weather-report"></div>
+
+
+	<script>
+		// $(document).ready(function(){
+        var weatherReports = {};
+        counter = 0;
+        
+        getWeatherData(0);
+     
+            
+
+        function getWeatherData(){
+            $.get('http://api.geonames.org/weatherJSON?north=41&south=39&east=-104&west=-106&username=ertyseidohl', function(response){
+                setInterval(buildWeatherReport, 1000);
+                weatherReports =  response.weatherObservations;
+                // var weather = {};
+                // if(dataToGet === "all"){
+                //     weather = response.weatherObservations;
+                // }else{
+                //      weather = response.weatherObservations[dataToGet];
+                //     buildWeatherReport(weather);
+                // }
+                // buildWeatherReport(weather);
+			})
+        }
+
+        function buildWeatherReport(){
+
+            var weatherObservation = weatherReports[counter];
+            console.log(weatherObservation);
+            var cloudReport = getCloudReport(weatherObservation.clouds);
+            var location = parseLocation();
+            var phrase = "It's " + weatherObservation.temperature +  " degrees in " + parseLocation(weatherObservation.stationName) +
+            " with " + getCloudReport(weatherObservation.clouds);
+
+            //display report
+            $('#weather-report').html(phrase);
+            counter++;
+            //cycle back through weather reports once last report is reached
+            counter = counter % weatherReports.length;
+           
+        }
+
+
+
+        function getCloudReport(cloudConditions){
+            if(cloudConditions == "n/a"){
+                return "no clouds";
+            }
+            return cloudConditions;
+        }
+
+        function celciusToFarenhei(){
+
+        }
+
+        function parseLocation(location){
+            //TODO: 
+            //if there is a comma, grab the part before the comma
+            //If no comma, just grab the first word
+            return location;
+
+        }
+	</script>
+</body>
+</html>
