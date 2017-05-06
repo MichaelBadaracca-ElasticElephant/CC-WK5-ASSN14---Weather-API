@@ -2,99 +2,34 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Weather Man Bill</title>
+	<title>Macho Weather Man Randy Savage</title>
 	<script
 		src="https://code.jquery.com/jquery-3.1.1.js"
 		integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-		crossorigin="anonymous"
-	></script>
-
-
-
-	<!-- 
-	WEATHER ASSIGNMENT:
-	-
-	Your goal: Build a simple weather website using data from an api. 
-	-
-	Using jquery, build out the html and content of your page to display the weather data from at least one location (there are ten in the API) but feel free to go wild and do the rest. 
-	-
-	here is the link to the api: 
-	http://api.geonames.org/weatherJSON?north=41&south=39&east=-104&west=-106&username=ertyseidohl
-	-
-	The beginnings of this code are located below:
-	-
-	 -->
-
-
-
-
+		crossorigin="anonymous">
+    </script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+          crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+            crossorigin="anonymous">
+    </script>
+    <link href="style.css" rel="stylesheet" >
+    <script src="script.js"></script>
 </head>
 <body>
-
-    <div id="weather-report"></div>
-
-
-	<script>
-		// $(document).ready(function(){
-        var weatherReports = {};
-        counter = 0;
-        
-        getWeatherData(0);
-     
-            
-
-        function getWeatherData(){
-            $.get('http://api.geonames.org/weatherJSON?north=41&south=39&east=-104&west=-106&username=ertyseidohl', function(response){
-                setInterval(buildWeatherReport, 1000);
-                weatherReports =  response.weatherObservations;
-                // var weather = {};
-                // if(dataToGet === "all"){
-                //     weather = response.weatherObservations;
-                // }else{
-                //      weather = response.weatherObservations[dataToGet];
-                //     buildWeatherReport(weather);
-                // }
-                // buildWeatherReport(weather);
-			})
-        }
-
-        function buildWeatherReport(){
-
-            var weatherObservation = weatherReports[counter];
-            console.log(weatherObservation);
-            var cloudReport = getCloudReport(weatherObservation.clouds);
-            var location = parseLocation();
-            var phrase = "It's " + weatherObservation.temperature +  " degrees in " + parseLocation(weatherObservation.stationName) +
-            " with " + getCloudReport(weatherObservation.clouds);
-
-            //display report
-            $('#weather-report').html(phrase);
-            counter++;
-            //cycle back through weather reports once last report is reached
-            counter = counter % weatherReports.length;
-           
-        }
-
-
-
-        function getCloudReport(cloudConditions){
-            if(cloudConditions == "n/a"){
-                return "no clouds";
-            }
-            return cloudConditions;
-        }
-
-        function celciusToFarenhei(){
-
-        }
-
-        function parseLocation(location){
-            //TODO: 
-            //if there is a comma, grab the part before the comma
-            //If no comma, just grab the first word
-            return location;
-
-        }
-	</script>
+    <header>
+        <h1 class="page-title"> MACHO WEATHER MAN RANDY SAVAGE</h1>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="macho-man" class="col-md-6"></div>
+            <div class="col-md-6">
+                <div id="weather-report"></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

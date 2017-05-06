@@ -1,0 +1,26 @@
+h1{
+    text-align: center;
+    font-size: 100px;
+    color:yellow;
+}
+
+body{
+    background-color: pink;
+
+}
+
+#weather-report{
+    font-size: 25px;
+}
+
+#weather-report{
+    z-index: -1;
+    padding: 50px 300px 300px 125px;
+    background: url('./images/speech-bubble.png') no-repeat;
+    font-family: arial;
+}
+
+#macho-man{
+    padding-left:300px;
+    padding-top:50px;
+}
